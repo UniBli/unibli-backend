@@ -1,5 +1,6 @@
 require('dotenv').config()
 const {MongoClient, ObjectId} = require('mongodb')
+const { identificarChaveValor } = require('./UniBliService') // Acessar o método
 
 const {
     MONGO_BASE_CONNECT_URI,
@@ -12,14 +13,14 @@ try {
     
 } catch(e){console.log(`Erro ao conectar com o MongoDB: ${e}`)}
 
-
 module.exports = class FatecAService{
 
     static async listaAcervoFatec(req, res){
         try {
             const livros = await acervo.db('fatec1').collection('acervo').find().toArray() // Chamo a conexão, indico o banco, a colection 
             //console.log(livros);
-            return res.json(livros); // Vai no banco em cima e retornar os dados localizados
+            const chavesValores = await identificarChaveValor(livros); // Vai no banco em cima e retornar os dados localizados
+            return res.json(chavesValores); // retorna as chaves e valores dos documentos
         } catch(err) {
             console.log(err)
         } 

@@ -86,4 +86,17 @@ module.exports = class UniBliService {
         }
     }
 
+    // Função para identificar chave-valor de cada documento FatecA
+    static async identificarChaveValor (livros) {
+        const chavesValores = [];
+        livros.forEach(documento => {
+            const chaveValorDocumento = {};
+            Object.entries(documento).forEach(([chave, valor]) => {
+                chaveValorDocumento[chave] = valor;
+            });
+            chavesValores.push(chaveValorDocumento);
+        });
+        return chavesValores;
+    }
+
 }

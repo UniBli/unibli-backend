@@ -57,7 +57,6 @@ if (process.env.NODE_ENV !== 'development') {
     });
 }
 
-
 app.use('/teste', testeRotas) // rotas para testar aqui
 app.use('/unibli', unibliRotas)
 app.use('/usuarios', usuariosRotas)
